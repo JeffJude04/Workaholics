@@ -339,29 +339,3 @@ def resume():
         if con.is_connected():
             mycursor.close()
             con.close()
-
-def analyitcs_reporting():
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
