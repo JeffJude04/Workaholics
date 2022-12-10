@@ -6,9 +6,9 @@ from getpass import getpass
 from tabulate import tabulate
 
 def main():
-    print("do you want to")
+    print("DO YOU WANT TO--")
     print("1. HIRE")
-    print("2. TO BE HIRED")
+    print("2. BE HIRED")
     ch=int(input("enter your choice"))
     while (True):
         if ch==1:
@@ -22,17 +22,13 @@ def main():
 def hire():
     print("1.Do you want to Login?")
     print("2.Do you want to Register?")
-    print("3.ANALYTICS AND REPORTING")
     ch=int(input(" What would you like to do?"))
     while (True):
         if ch==1:
-            login()
-            password()
+            login_hire()
+            
         elif ch==2:  
-            register()
-            password()
-        elif ch==3:
-            analytics_reporting()
+            register_hire()
         else:
             print("Wrong choice choose again")
             hire()
@@ -41,7 +37,7 @@ def hire():
     
 def register_hire():#register for the hire
     try:
-        com=mys.connect(host="localhost",user="root",passwd="jeffjude",database="register")
+        con=mys.connect(host="localhost",user="root",passwd="jeffjude",database="register")
         mycursor=con.cursor()
         EMAIL=input("enter your Email id")
         NAME=input("enter your full name")
@@ -53,12 +49,13 @@ def register_hire():#register for the hire
         con.commit()
         print("you have been registered")
 
-    except exception as e:
+    except Exception as e:
         print(e)
     finally:
         if con.is_connected():
             mycursor.close()
             con.close()
+    hire()
 
 
 def password():#password for register
@@ -67,7 +64,7 @@ def password():#password for register
     
 def login_hire():
     try:
-        com=mys.connect(host="localhost",user="root",passwd="jeffjude",database="register")
+        con=mys.connect(host="localhost",user="root",passwd="jeffjude",database="register")
         mycursor=con.cursor()
         EMAIL=input("enter your Email id")
         NAME=input("enter your full name")
@@ -79,7 +76,7 @@ def login_hire():
         con.commit()
         print(" WELCOME ")
 
-    except exception as e:
+    except Exception as e:
         print(e)
     finally:
         if con.is_connected():
@@ -119,34 +116,36 @@ def soft_skills():
         mycursor.execute(q)
         rows=mycursor.fetchall()
 
-def hard_skills():
-        print("__________________________________________")
-        print("computer skills")
-        print("analytical skills")
-        print("Marketing skills")
-        print("presentation skills")
-        print("management skills")
-        print("project management skills")
-        print("____________________________________________")
+    except Exception as e:
+        print(e)
+    finally:
+        if con.is_connected():
+            mycursor.close()
+            con.close()
 
-        con=mys.connect(host="localhost",user="root",passwd="jeffjudev",database="hardskills")
+def hard_skills():
+    try:
+        con=mys.connect(host="localhost",user="root",passwd="jeffjudev",database="hard skills")
         mycursor=con.cursor()
-        EMPNO=int(input("enter the employee issued number"))
+        EMPNO=int(input("enter the employee specific number"))
         q="select * from hardskills1 where EMPNO={}".format(EMPNO)
         mycursor.execute(q)
         rows=mycursor.fetchall()
-except exception as e:
-    print(e)
-        finally:
-            if con.is_connected():
-                mycursor.close()con.close()
 
-
+        
+    except Exception as e:
+        print(e)
+    finally:
+        if con.is_connected():
+            mycursor.close()
+            con.close() 
+    
 
           
     
 def be_hired():
-    int("2.Do you want to Register?")
+    print("1.Do you want to login?")
+    print("2.Do you want to Register?")
     ch=int(input(" What would you like to do?"))
     while (True):
         if ch==1:
@@ -158,46 +157,46 @@ def be_hired():
 
 def be_hired_register():
     try:
-        com=mys.connect(host="localhost",user="root",passwd="jeffjude",database="hired")
+        con=mys.connect(host="localhost",user="root",passwd="jeffjude",database="hired")
         mycursor=con.cursor()
         EMAIL=input("enter your Email id")
         NAME=input("enter your full name")
         PASSWORD=int(input("enter your password"))
 
-        a="insert into employee1 values('{}','{}','{}',{})".format(EMAIL,NAME,PASSWORD)
+        a="insert into employee1 values('{}','{}','{}')".format(EMAIL,NAME,PASSWORD)
 
         mycursor.execute(a)
         con.commit()
         print("you have been registered")
 
-    except exception as e:
+    except Exception as e:
         print(e)
     finally:
         if con.is_connected():
             mycursor.close()
             con.close()
-    
+    be_hired()
 def be_hired_login():
     try:
-        com=mys.connect(host="localhost",user="root",passwd="jeffjude",database="hired")
+        con=mys.connect(host="localhost",user="root",passwd="jeffjude",database="hired")
         mycursor=con.cursor()
         EMAIL=input("enter your Email id")
         NAME=input("enter your full name")
         PASSWORD=int(input("enter your password"))
 
-        a="insert into employee1 values('{}','{}','{}',{})".format(EMAIL,NAME,PASSWORD)
+        a="insert into employee1 values('{}','{}','{}')".format(EMAIL,NAME,PASSWORD)
 
         mycursor.execute(a)
         con.commit()
         print(" WELCOME ")
 
-    except exception an e:
+    except Exception as e:
         print(e)
     finally:
         if con.is_connected():
             mycursor.close()
             con.close()
-    search()
+    main_resume()
 
 def main_resume():
     print("1. DO You want to view your resume?")
@@ -219,7 +218,7 @@ def new_resume():
         con=mys.connect(host="localhost",user="root",passwd="jeffjude",database="hired")
         mycursor=con.cursor()
         NAME=input("enter your name")
-        DOB=date(input("enter your date of birth ")
+        DOB=date(input("enter your date of birth in words")  
         MAIL=input("input your mail")
         PHNO=int(input("enter your phone number"))
         print("-------E D U C A T I O N----------")
@@ -234,13 +233,13 @@ def new_resume():
         con.commit()
         print("  ")
 
-     except exception as e:
+    except Exception as e:
         print(e)
-     finally:
-         if con.is_connected():
-             mycursor.close()
-             con.close()   
-        
+    finally:
+        if con.is_connected():
+            mycursor.close()
+            con.close()   
+    main_resume()    
     
 def edit_resume():
     try:
@@ -288,7 +287,7 @@ def edit_resume():
                     mycon.commit()
                     print("the record is updated")
                 elif choice==6:
-                    HIGHERSR=input("enter the name of school/college"))
+                    HIGHERSR=input("enter the name of school/college")
                     sql="update resume set HIGHERSR={} where PHNO={}".format(HIGHRERSR,PHNO)
                     mycursor.execute(sql)
                     mycon.commit()
@@ -339,3 +338,6 @@ def resume():
         if con.is_connected():
             mycursor.close()
             con.close()
+
+
+main()
